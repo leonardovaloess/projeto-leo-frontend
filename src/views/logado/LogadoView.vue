@@ -2,8 +2,11 @@
 import { useAuthStore } from "@/stores/auth";
 import { storeToRefs } from "pinia";
 
+
 const authStore = useAuthStore();
 const { user } = storeToRefs(authStore);
+
+
 </script>
 
 <template>
@@ -12,10 +15,19 @@ const { user } = storeToRefs(authStore);
 
     <h1>Usuário:</h1>
     {{ user }}
+
   </div>
+
+
+ 
 </template>
 
 <style scoped>
+#my-cal-inline{
+  height: 100vh;
+
+}
+
 .main {
   transition: all ease-in-out 0.4s;
   padding-top: 2rem;
