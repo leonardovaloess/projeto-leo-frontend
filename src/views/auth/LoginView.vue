@@ -3,20 +3,19 @@ import { ref } from "vue";
 import { useAuthStore } from "@/stores/auth";
 import { useRouter } from "vue-router";
 import BaseAlertError from "@/components/Alert/BaseAlertError.vue";
+import BasePasswordInput from "@/components/input/BasePasswordInput.vue";
 import { watch } from "vue";
 
 const authStore = useAuthStore();
 const { userLogin } = authStore;
 
-const error = ref(false)
+const error = ref(false);
 const router = useRouter();
-const disabled = ref(true)
-
-
+const disabled = ref(true);
 
 const payload = ref({
-  email: '',
-  password: '',
+  email: "",
+  password: "",
 });
 
 const handleSubmit = async () => {
@@ -28,27 +27,27 @@ const handleSubmit = async () => {
 
     router.push({ path: "/home" });
   } else {
-    error.value = true
+    error.value = true;
 
     setTimeout(() => {
-      error.value = false
-    }, 3000)
+      error.value = false;
+    }, 3000);
   }
 };
 
 watch(payload.value, () => {
-  if(payload.value.email.length > 1 && payload.value.password.length > 1){
-    disabled.value = false
+  if (payload.value.email.length > 1 && payload.value.password.length > 1) {
+    disabled.value = false;
   } else {
-    disabled.value = true
+    disabled.value = true;
   }
-})
+});
 </script>
 
 <template>
   <div class="flex login-view-container">
     <div class="form-container">
-      <div class="form flex column ">
+      <div class="form flex column">
         <h1 class="poppins-medium">Login</h1>
         <div class="flex column input-container">
           <label>Email</label>
@@ -60,40 +59,43 @@ watch(payload.value, () => {
           />
         </div>
         <div class="flex column input-container">
-          <label>Senha</label>
-          <input
-            type="password"
-            placeholder="Insira sua senha"
-            :value="payload.password"
-            @input="(ev) => (payload.password = ev.target.value)"
-          />
+          <BasePasswordInput label="Senha" v-model="payload.password" />
         </div>
         <div class="flex input-container w-100">
           <RouterLink class="password-span-text w-100" to="/register"
             >Esqueceu a senha?</RouterLink
           >
         </div>
-        <button @click="handleSubmit" :class="disabled === true ? 'disabled' : ''" :disabled="disabled">Entrar</button>
+        <button
+          class="button"
+          @click="handleSubmit"
+          :class="disabled === true ? 'disabled' : ''"
+          :disabled="disabled"
+        >
+          Entrar
+        </button>
         <span>
           Não tem uma conta?
           <RouterLink class="login-span-text" to="/register"
             >Cadastre-se</RouterLink
           >
         </span>
-        <BaseAlertError v-if="error" type="error" text="Email ou senha incorretos"/>
+        <BaseAlertError
+          v-if="error"
+          type="error"
+          text="Email ou senha incorretos"
+        />
       </div>
-
     </div>
     <div class="theme">
-      <img src="../../assets/img/png/login-register-theme.jpg" alt="theme">
+      <img src="../../assets/img/png/login-register-theme.jpg" alt="theme" />
     </div>
   </div>
 </template>
 
 <style scoped lang="scss">
-.disabled{
+.disabled {
   opacity: 0.6;
- 
 }
 
 .password-span-text {
@@ -115,10 +117,10 @@ watch(payload.value, () => {
   justify-content: center;
 }
 
-.theme{
+.theme {
   width: 50%;
   background-color: black;
-  img{
+  img {
     width: 100%;
     opacity: 0.7;
     height: 100vh;
@@ -128,8 +130,8 @@ watch(payload.value, () => {
 .form-container {
   width: 50%;
   padding: 2rem;
- 
-  .form{
+
+  .form {
     gap: 0.8rem;
     width: 500px;
     margin: auto;
@@ -143,10 +145,12 @@ watch(payload.value, () => {
         padding: 0.7rem;
         border-radius: 8px;
         border: 1px solid #24242475;
+
+        width: 100%;
       }
     }
 
-    button {
+    .button {
       background-color: rgba(0, 0, 255, 0.76);
       color: #fff;
       padding: 0.7rem;
@@ -156,10 +160,8 @@ watch(payload.value, () => {
       cursor: pointer;
     }
 
-    @media(max-width: 1110px){
-      
+    @media (max-width: 1110px) {
       width: 90%;
-      
     }
   }
 }
@@ -168,13 +170,12 @@ watch(payload.value, () => {
     display: none;
   }
 
-  .form-container{
+  .form-container {
     width: 100%;
     height: 100vh;
     display: flex;
     align-items: center;
     justify-content: center;
-
   }
 }
 </style>
