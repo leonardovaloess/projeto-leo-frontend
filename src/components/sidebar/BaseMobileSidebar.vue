@@ -28,6 +28,8 @@ const handleLogout = async () => {
           <div class="flex gap-05 align-center">
             <p>{{ item.label }}</p>
             <svg
+              class="close-link-icon"
+              :class="{ rotate: !item.opened }"
               width="20px"
               height="20px"
               viewBox="0 0 24 24"
@@ -79,6 +81,14 @@ const handleLogout = async () => {
 </template>
 
 <style scoped lang="scss">
+.close-link-icon {
+  transition: transform 0.3s ease-in-out;
+}
+
+.close-link-icon.rotate {
+  transform: rotate(180deg);
+}
+
 .nav-container {
   transform: translateY(-10px);
   animation: moveleft 0.4s linear forwards;
