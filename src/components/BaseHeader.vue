@@ -2,22 +2,29 @@
 import { useAuthStore } from "@/stores/auth";
 import { storeToRefs } from "pinia";
 import { ref } from "vue";
-import { useRouter } from "vue-router";
+import { useRoute, useRouter } from "vue-router";
 import BaseMobileSidebar from "./sidebar/BaseMobileSidebar.vue";
+import { onMounted } from "vue";
 const authStore = useAuthStore();
 const { user } = storeToRefs(authStore);
+
+const route = useRoute();
 
 const mobileMenu = ref(false);
 
 const handleOpen = () => {
   mobileMenu.value = !mobileMenu.value;
 };
+
+onMounted(() => {
+  console.log(route.name);
+});
 </script>
 
 <template>
   <header>
     <div>
-      <h1>Olá {{ user.name }}</h1>
+      <h1>{{ route.name }}</h1>
     </div>
     <div class="menu-mobile">
       <svg
@@ -58,7 +65,7 @@ header {
   justify-content: space-between;
 
   @media (max-width: 840px) {
-    font-size: 10px;
+    font-size: 14px;
     z-index: 9999;
   }
 }

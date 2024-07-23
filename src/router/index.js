@@ -5,6 +5,7 @@ import TheContainer from "../components/TheContainer.vue";
 
 const router = createRouter({
   history: createWebHistory(),
+  linkActiveClass: "active-link",
   routes: [
     {
       path: "/",
@@ -34,8 +35,8 @@ const router = createRouter({
       children: [
         {
           path: "",
-          name: "Logado",
-          component: () => import("../views/logado/LogadoView.vue"),
+          name: "Tarefas",
+          component: () => import("../views/tasks/TasksView.vue"),
         },
       ],
     },

@@ -7,7 +7,7 @@ const links = ref([
     childreen: [
       {
         name: "Tarefas",
-        path: "/home/tasks",
+        path: "/home",
       },
 
       {

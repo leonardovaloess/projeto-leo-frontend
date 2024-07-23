@@ -44,9 +44,12 @@ const handleLogout = async () => {
             </svg>
           </div>
           <div v-for="link in item.childreen" v-if="item.opened" class="links">
-            <RouterLink class="link" :to="link.path">{{
-              link.name
-            }}</RouterLink>
+            <RouterLink
+              class="link"
+              :to="link.path"
+              activeClass="active-link"
+              >{{ link.name }}</RouterLink
+            >
           </div>
         </div>
       </div>
@@ -163,5 +166,10 @@ const handleLogout = async () => {
     align-items: center;
     gap: 10px;
   }
+}
+
+.active-link {
+  background-color: #1a4fc0;
+  color: #fff;
 }
 </style>
