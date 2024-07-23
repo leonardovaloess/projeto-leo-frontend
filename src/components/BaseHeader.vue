@@ -61,6 +61,13 @@ header {
   }
 }
 
+.menu-mobile {
+  display: none;
+  @media (max-width: 840px) {
+    display: block;
+  }
+}
+
 .mobile-menu {
   position: fixed;
   width: 100%;
