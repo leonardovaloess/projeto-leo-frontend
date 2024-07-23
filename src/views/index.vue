@@ -26,6 +26,7 @@ import BaseIndexHeader from "@/components/BaseIndexHeader.vue";
         <img src="../assets/img/png/index1.png" alt="" />
       </div>
     </div>
+    <div class="section section-2"></div>
   </main>
 </template>
 
@@ -76,9 +77,12 @@ import BaseIndexHeader from "@/components/BaseIndexHeader.vue";
 
   .right {
     width: 50%;
-
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     img {
-      width: 90%;
+      width: 70%;
     }
   }
 
@@ -93,6 +97,12 @@ import BaseIndexHeader from "@/components/BaseIndexHeader.vue";
       width: 100%;
     }
 
+    .right {
+      margin-top: 55px;
+      img {
+        width: 60%;
+      }
+    }
     .left {
       padding-top: 3rem;
       align-items: center;
@@ -135,6 +145,12 @@ import BaseIndexHeader from "@/components/BaseIndexHeader.vue";
         .button {
           font-size: 12px;
         }
+      }
+    }
+
+    .right {
+      img {
+        width: 70%;
       }
     }
   }
