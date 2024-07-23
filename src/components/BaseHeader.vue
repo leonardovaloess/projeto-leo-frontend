@@ -5,18 +5,8 @@ import { useRouter } from "vue-router";
 
 const authStore = useAuthStore();
 const { user } = storeToRefs(authStore);
-const { userLogout } = authStore
-const router = useRouter()
-
-const handleLogout = async () => {
-  await userLogout()
-
-  localStorage.removeItem("token-auth")
-  localStorage.removeItem("user_id")
-
-  router.push({path: "/login"})
-}
-
+const { userLogout } = authStore;
+const router = useRouter();
 </script>
 
 <template>
@@ -24,23 +14,26 @@ const handleLogout = async () => {
     <div>
       <h1>Olá {{ user.name }}</h1>
     </div>
-    <button @click="handleLogout">Logout</button>
-
   </header>
 </template>
 
 <style scoped>
 header {
-  background-color: rgb(233, 233, 233);
+  position: sticky;
+  top: 0;
+  right: 0;
+  background-color: #3674f8;
+  color: #fff;
   border-bottom: 1px solid rgba(77, 77, 77, 0.192);
   width: 100%;
+  height: 120px;
   padding: 24px;
   display: flex;
   align-items: center;
   justify-content: space-between;
 }
 
-button{
+button {
   background-color: red;
   color: #fff;
   padding: 0.4rem;

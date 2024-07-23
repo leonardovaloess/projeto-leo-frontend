@@ -1,5 +1,6 @@
 <script setup>
 import BaseHeader from "@/components/BaseHeader.vue";
+import BaseSidebar from "./sidebar/BaseSidebar.vue";
 import { onMounted } from "vue";
 import { useAuthStore } from "@/stores/auth";
 
@@ -18,20 +19,59 @@ onMounted(async () => {
 
 <template>
   <div class="page-background">
-    <BaseHeader />
+    <BaseSidebar class="sidebar" />
+
     <main :class="`main `">
-      <router-view />
+      <BaseHeader class="header" />
+      <div class="base-padding">
+        <div class="background">
+          <router-view />
+        </div>
+      </div>
     </main>
   </div>
 </template>
 
 <style scoped>
+.page-background {
+  display: flex;
+  position: relative;
+}
+
+.sidebar {
+  position: sticky;
+  left: 0;
+  top: 0;
+  z-index: 9999;
+  box-shadow: 10px 0px 105px rgba(0, 0, 0, 0.267);
+}
+
+.base-padding {
+  background-color: #d4d4d4;
+  padding: 2rem;
+  height: 90%;
+}
+
+.header {
+  position: sticky;
+  top: 0;
+  height: 10%;
+  right: 0;
+  z-index: 999;
+}
 .main {
   transition: all ease-in-out 0.4s;
-  padding-top: 2rem;
+  height: 100vh;
+  width: 100%;
 }
 .page {
   margin-left: 200px;
+}
+
+.background {
+  background-color: #fff;
+  border-radius: 10px;
+  height: 100%;
 }
 @media (min-width: 0px) and (max-width: 768px) {
   .page {
