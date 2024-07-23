@@ -58,6 +58,7 @@ header {
 
   @media (max-width: 840px) {
     font-size: 10px;
+    z-index: 9999;
   }
 }
 

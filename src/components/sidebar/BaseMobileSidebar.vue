@@ -80,13 +80,15 @@ const handleLogout = async () => {
 
 <style scoped lang="scss">
 .nav-container {
+  transform: translateY(-10px);
+  animation: moveleft 0.4s linear forwards;
   width: 100%;
   background-color: #1a4fc0;
-  z-index: 9999;
+  z-index: 99;
   display: flex;
+  height: 70%;
   flex-direction: column;
   align-items: center;
-  height: 100%;
   overflow-y: auto;
   .nav-header {
     width: 90%;
@@ -102,7 +104,7 @@ const handleLogout = async () => {
     background-color: #fff;
     width: 92%;
     border-radius: 7px;
-    height: 50%;
+    height: 70%;
     padding: 10px;
     display: flex;
     gap: 1.2rem;
@@ -136,7 +138,7 @@ const handleLogout = async () => {
 
 .nav-footer {
   width: 90%;
-  height: 10%;
+  height: 100px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -146,6 +148,12 @@ const handleLogout = async () => {
     display: flex;
     align-items: center;
     gap: 10px;
+  }
+}
+
+@keyframes moveleft {
+  100% {
+    transform: translateY(0);
   }
 }
 </style>
