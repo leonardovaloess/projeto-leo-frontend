@@ -180,7 +180,7 @@ watch(payload.value, () => {
     }
 
     button {
-      background-color: rgba(0, 0, 255, 0.76);
+      background-color: #407bff;
       color: #fff;
       padding: 0.7rem;
       border: 1px solid rgba(83, 83, 83, 0.219);
