@@ -36,15 +36,15 @@ import BaseIndexHeader from "@/components/BaseIndexHeader.vue";
 .section-1 {
   align-items: center;
   justify-content: space-between;
-  height: 700px;
+  height: 800px;
   .left {
     width: 50%;
-    height: 100%;
+    height: auto;
     display: flex;
-    padding-top: 10rem;
     flex-direction: column;
     align-items: center;
     gap: 32px;
+    padding-bottom: 8rem;
     .text-box {
       width: 70%;
       display: flex;
@@ -94,10 +94,10 @@ import BaseIndexHeader from "@/components/BaseIndexHeader.vue";
     }
 
     .left {
-      padding-top: 2rem;
+      padding-top: 3rem;
       align-items: center;
       justify-content: center;
-
+      padding-bottom: 0;
       .text-box {
         width: 90%;
         align-items: center;
@@ -117,6 +117,44 @@ import BaseIndexHeader from "@/components/BaseIndexHeader.vue";
       display: flex;
       align-items: center;
       justify-content: center;
+    }
+  }
+
+  @media (max-width: 650px) {
+    .left {
+      .text-box {
+        h1 {
+          font-size: 35px;
+        }
+
+        p {
+          text-align: center;
+          font-size: 12px;
+        }
+
+        .button {
+          font-size: 12px;
+        }
+      }
+    }
+  }
+
+  @media (max-width: 400px) {
+    .left {
+      .text-box {
+        h1 {
+          font-size: 24px;
+        }
+
+        p {
+          text-align: center;
+          font-size: 12px;
+        }
+
+        .button {
+          font-size: 12px;
+        }
+      }
     }
   }
 }
