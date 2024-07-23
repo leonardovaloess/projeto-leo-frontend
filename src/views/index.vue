@@ -81,5 +81,43 @@ import BaseIndexHeader from "@/components/BaseIndexHeader.vue";
       width: 90%;
     }
   }
+
+  @media (max-width: 816px) {
+    flex-direction: column;
+    height: auto;
+    justify-content: center;
+    align-items: center;
+
+    .left,
+    .right {
+      width: 100%;
+    }
+
+    .left {
+      padding-top: 2rem;
+      align-items: center;
+      justify-content: center;
+
+      .text-box {
+        width: 90%;
+        align-items: center;
+        justify-content: center;
+
+        h1 {
+          text-align: center;
+        }
+
+        p {
+          text-align: center;
+        }
+      }
+    }
+
+    .right {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+  }
 }
 </style>
