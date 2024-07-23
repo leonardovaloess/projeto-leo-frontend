@@ -93,8 +93,6 @@ const handleLogout = async () => {
 }
 
 .nav-container {
-  transform: translateY(-3px);
-  animation: moveleft 0.4s linear forwards;
   width: 100%;
   background-color: #1a4fc0;
   z-index: 9999;
@@ -167,11 +165,5 @@ const handleLogout = async () => {
 .active-link {
   background-color: #1a4fc0;
   color: #fff;
-}
-
-@keyframes moveleft {
-  100% {
-    transform: translateY(0);
-  }
 }
 </style>
