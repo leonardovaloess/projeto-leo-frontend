@@ -90,7 +90,7 @@ const handleLogout = async () => {
 }
 
 .nav-container {
-  transform: translateY(-10px);
+  transform: translateY(-3px);
   animation: moveleft 0.4s linear forwards;
   width: 100%;
   background-color: #1a4fc0;
