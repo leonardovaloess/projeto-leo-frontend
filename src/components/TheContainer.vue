@@ -40,8 +40,6 @@ onMounted(async () => {
 
 .sidebar {
   position: sticky;
-  left: 0;
-  top: 0;
   z-index: 9999;
   box-shadow: 10px 0px 105px rgba(0, 0, 0, 0.267);
 }
@@ -49,20 +47,22 @@ onMounted(async () => {
 .base-padding {
   background-color: #d4d4d4;
   padding: 2rem;
-  height: 90%;
+  flex: 1;
 }
 
 .header {
   position: sticky;
   top: 0;
-  height: 10%;
   right: 0;
-  z-index: 999;
+  z-index: 0;
 }
 .main {
   transition: all ease-in-out 0.4s;
-  height: 100vh;
+  display: flex;
+  flex-direction: column;
   width: 100%;
+  height: 100vh;
+  background-color: red;
 }
 .page {
   margin-left: 200px;
