@@ -153,7 +153,7 @@ watch(payload.value, () => {
   background-color: black;
   img {
     width: 100%;
-    opacity: 0.7;
+    opacity: 0.6;
     height: 100vh;
     object-fit: cover;
   }

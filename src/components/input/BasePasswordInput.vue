@@ -59,7 +59,6 @@ const props = defineProps({
 
   position: relative;
   .pass-btn {
-    background-color: #fff;
     padding: 0 5px;
     width: 25px;
     position: absolute;
