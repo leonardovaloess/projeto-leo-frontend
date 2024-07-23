@@ -21,6 +21,7 @@ const { user } = storeToRefs(authStore);
 .page-background {
   display: flex;
   flex-direction: column;
+  width: 100%;
 }
 .main {
   transition: all ease-in-out 0.4s;
@@ -32,6 +33,10 @@ const { user } = storeToRefs(authStore);
 @media (min-width: 0px) and (max-width: 768px) {
   .page {
     margin-left: 0px;
+  }
+
+  .page-background {
+    font-size: 10px;
   }
 }
 </style>

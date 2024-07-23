@@ -53,6 +53,7 @@ header {
   height: 120px;
   padding: 24px;
   display: flex;
+  text-wrap: wrap;
   align-items: center;
   justify-content: space-between;
 
@@ -72,8 +73,10 @@ header {
 .mobile-menu {
   position: fixed;
   width: 100%;
+  z-index: 99;
+  background-color: rgba(0, 0, 0, 0.525);
   height: 100vh;
-  top: 120px;
+  top: 14%;
   @media (max-width: 840px) {
     display: block;
   }

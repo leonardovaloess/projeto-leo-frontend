@@ -25,7 +25,7 @@ onMounted(async () => {
       <BaseHeader class="header" />
       <div class="base-padding">
         <div class="background">
-          <router-view />
+          <router-view class="view" />
         </div>
       </div>
     </main>
@@ -38,6 +38,9 @@ onMounted(async () => {
   position: relative;
 }
 
+.view {
+  z-index: 0;
+}
 .sidebar {
   position: sticky;
   z-index: 9999;
