@@ -1,12 +1,17 @@
 <script setup>
 import { useAuthStore } from "@/stores/auth";
 import { storeToRefs } from "pinia";
+import { ref } from "vue";
 import { useRouter } from "vue-router";
-
+import BaseMobileSidebar from "./sidebar/BaseMobileSidebar.vue";
 const authStore = useAuthStore();
 const { user } = storeToRefs(authStore);
-const { userLogout } = authStore;
-const router = useRouter();
+
+const mobileMenu = ref(false);
+
+const handleOpen = () => {
+  mobileMenu.value = !mobileMenu.value;
+};
 </script>
 
 <template>
@@ -14,10 +19,29 @@ const router = useRouter();
     <div>
       <h1>Olá {{ user.name }}</h1>
     </div>
+    <div class="menu-mobile">
+      <svg
+        width="40px"
+        height="40px"
+        viewBox="0 0 24 24"
+        fill="none"
+        xmlns="http://www.w3.org/2000/svg"
+        @click="handleOpen"
+      >
+        <path
+          d="M4 6H20M4 12H20M4 18H20"
+          stroke="#fff  "
+          stroke-width="2"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        />
+      </svg>
+    </div>
   </header>
+  <BaseMobileSidebar class="mobile-menu" v-if="mobileMenu" />
 </template>
 
-<style scoped>
+<style scoped lang="scss">
 header {
   position: sticky;
   top: 0;
@@ -31,8 +55,21 @@ header {
   display: flex;
   align-items: center;
   justify-content: space-between;
+
+  @media (max-width: 840px) {
+    font-size: 10px;
+  }
 }
 
+.mobile-menu {
+  position: fixed;
+  width: 100%;
+  height: 100vh;
+  top: 120px;
+  @media (max-width: 840px) {
+    display: block;
+  }
+}
 button {
   background-color: red;
   color: #fff;

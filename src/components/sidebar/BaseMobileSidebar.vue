@@ -80,22 +80,21 @@ const handleLogout = async () => {
 
 <style scoped lang="scss">
 .nav-container {
-  width: 240px;
-  height: 100vh;
+  width: 100%;
   background-color: #1a4fc0;
   z-index: 9999;
   display: flex;
   flex-direction: column;
   align-items: center;
-
+  height: 100%;
+  overflow-y: auto;
   .nav-header {
     width: 90%;
     display: flex;
-
     align-items: center;
     justify-content: center;
     img {
-      width: 120px;
+      width: 40%;
     }
   }
 
@@ -103,15 +102,11 @@ const handleLogout = async () => {
     background-color: #fff;
     width: 92%;
     border-radius: 7px;
-    height: 80%;
+    height: 50%;
     padding: 10px;
     display: flex;
     gap: 1.2rem;
     flex-direction: column;
-  }
-
-  @media (max-width: 840px) {
-    display: none;
   }
 }
 
