@@ -8,24 +8,24 @@ import { watch } from "vue";
 const authStore = useAuthStore();
 const { registerUser } = authStore;
 
-const error = ref(false)
+const error = ref(false);
 const router = useRouter();
-const disabled = ref(true)
+const disabled = ref(true);
 
-const passwordConfirm = ref('')
+const passwordConfirm = ref("");
 const payload = ref({
-  name: '',
-  email: '',
-  password: '',
+  name: "",
+  email: "",
+  password: "",
 });
 
 const handleSubmit = async () => {
-  if(payload.value.password !== passwordConfirm.value){
-    error.value = true 
+  if (payload.value.password !== passwordConfirm.value) {
+    error.value = true;
     setTimeout(() => {
-      error.value = false
-    }, 3000)
-    return 
+      error.value = false;
+    }, 3000);
+    return;
   }
 
   const login = await registerUser(payload.value);
@@ -36,28 +36,30 @@ const handleSubmit = async () => {
 
     router.push({ path: "/home" });
   } else {
-    error.value = true
+    error.value = true;
 
     setTimeout(() => {
-      error.value = false
-    }, 3000)
+      error.value = false;
+    }, 3000);
   }
 };
 
 watch(payload.value, () => {
-  if(payload.value.email.length > 1 && payload.value.password.length > 1  && payload.value.name.length > 1){
-    disabled.value = false
+  if (
+    payload.value.email.length > 1 &&
+    payload.value.password.length > 1 &&
+    payload.value.name.length > 1
+  ) {
+    disabled.value = false;
   } else {
-    disabled.value = true
+    disabled.value = true;
   }
-
- 
-})
+});
 </script>
 
 <template>
   <div class="flex login-view-container">
-    <div class=" form-container">
+    <div class="form-container">
       <div class="flex column form">
         <h1 class="poppins-medium">Cadastre-se</h1>
         <div class="flex column input-container">
@@ -96,27 +98,35 @@ watch(payload.value, () => {
             @input="(ev) => (passwordConfirm = ev.target.value)"
           />
         </div>
-        <button @click="handleSubmit" :class="disabled === true ? 'disabled' : ''" :disabled="disabled">Entrar</button>
+        <button
+          @click="handleSubmit"
+          :class="disabled === true ? 'disabled' : ''"
+          :disabled="disabled"
+        >
+          Entrar
+        </button>
         <span>
           Tem uma conta?
           <RouterLink class="login-span-text" to="/login"
             >Faça seu login</RouterLink
           >
         </span>
-        <BaseAlertError v-if="error" type="error" text="As senhas não coincidem"/>
-        
-            </div>
+        <BaseAlertError
+          v-if="error"
+          type="error"
+          text="As senhas não coincidem"
+        />
+      </div>
     </div>
     <div class="theme">
-      <img src="../../assets/img/png/login-register-theme.jpg" alt="theme">
+      <img src="../../assets/img/png/5559852.jpg" alt="theme" />
     </div>
   </div>
 </template>
 
 <style scoped lang="scss">
-.disabled{
+.disabled {
   opacity: 0.6;
- 
 }
 
 .password-span-text {
@@ -138,10 +148,10 @@ watch(payload.value, () => {
   justify-content: center;
 }
 
-.theme{
+.theme {
   width: 50%;
   background-color: black;
-  img{
+  img {
     width: 100%;
     opacity: 0.7;
     height: 100vh;
@@ -151,8 +161,8 @@ watch(payload.value, () => {
 .form-container {
   width: 50%;
   padding: 2rem;
- 
-  .form{
+
+  .form {
     gap: 0.8rem;
     width: 500px;
     margin: auto;
@@ -179,10 +189,8 @@ watch(payload.value, () => {
       cursor: pointer;
     }
 
-    @media(max-width: 1110px){
-      
+    @media (max-width: 1110px) {
       width: 90%;
-      
     }
   }
 }
@@ -191,13 +199,12 @@ watch(payload.value, () => {
     display: none;
   }
 
-  .form-container{
+  .form-container {
     width: 100%;
     height: 100vh;
     display: flex;
     align-items: center;
     justify-content: center;
-
   }
 }
 </style>

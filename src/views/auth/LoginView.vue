@@ -88,14 +88,14 @@ watch(payload.value, () => {
       </div>
     </div>
     <div class="theme">
-      <img src="../../assets/img/png/login-register-theme.jpg" alt="theme" />
+      <img src="../../assets/img/png/5559852.jpg" alt="theme" />
     </div>
   </div>
 </template>
 
 <style scoped lang="scss">
 .disabled {
-  opacity: 0.6;
+  opacity: 0.7;
 }
 
 .password-span-text {
@@ -122,7 +122,7 @@ watch(payload.value, () => {
   background-color: black;
   img {
     width: 100%;
-    opacity: 0.7;
+    opacity: 1;
     height: 100vh;
     object-fit: cover;
   }

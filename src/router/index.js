@@ -7,6 +7,11 @@ const router = createRouter({
   history: createWebHistory(),
   routes: [
     {
+      path: "/",
+      name: "index",
+      component: () => import("../views/index.vue"),
+    },
+    {
       path: "/login",
       name: "login",
       component: () => import("../views/auth/LoginView.vue"),
@@ -23,12 +28,12 @@ const router = createRouter({
     },
 
     {
-      path: "/",
+      path: "/home",
       component: TheContainer,
       meta: { requiresAuth: true },
       children: [
         {
-          path: "/home",
+          path: "/home/logado",
           name: "Logado",
           component: () => import("../views/logado/LogadoView.vue"),
         },
