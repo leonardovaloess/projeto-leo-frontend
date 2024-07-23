@@ -14,6 +14,15 @@ const links = ref([
         name: "Quadro",
         path: "/home/board",
       },
+
+      {
+        name: "Tarefas Diárias",
+        path: "/home/diary",
+      },
+      {
+        name: "Modelos",
+        path: "/home/diary",
+      },
     ],
   },
   {
