@@ -33,7 +33,7 @@ const router = createRouter({
       meta: { requiresAuth: true },
       children: [
         {
-          path: "/home/logado",
+          path: "",
           name: "Logado",
           component: () => import("../views/logado/LogadoView.vue"),
         },
