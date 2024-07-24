@@ -43,7 +43,7 @@ onMounted(async () => {
 }
 .sidebar {
   position: sticky;
-  z-index: 9999;
+  z-index: 99;
   box-shadow: 10px 0px 105px rgba(0, 0, 0, 0.267);
 }
 

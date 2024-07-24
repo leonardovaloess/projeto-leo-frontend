@@ -4,7 +4,11 @@ import { ref } from "vue";
 import BaseInput from "@/components/input/BaseInput.vue";
 import BaseButton from "@/components/buttons/BaseButton.vue";
 import BaseDropdown from "@/components/dropdown/BaseDropdown.vue";
+import CreateEditTaskModal from "./Partials/CreateEditTaskModal.vue";
 import TaskTab from "./Partials/TaskTab.vue";
+
+const openModal = ref(false);
+const createModal = ref(true);
 const search = ref(null);
 </script>
 
@@ -16,11 +20,20 @@ const search = ref(null);
         v-model="search"
         placeholder="Buscar Tarefa..."
       />
-      <BaseButton class="base-button" label="Adicionar Tarefa" />
+      <BaseButton
+        class="base-button"
+        label="Adicionar Tarefa"
+        @click="openModal = !openModal"
+      />
     </div>
     <div class="tasks">
       <TaskTab />
     </div>
+    <CreateEditTaskModal
+      :open="openModal"
+      @update:open="openModal = $event"
+      :create="createModal"
+    />
   </div>
 </template>
 
@@ -35,7 +48,7 @@ const search = ref(null);
     flex: content;
   }
   @media (max-width: 630px) {
-    gap: 0.5rem;
+    gap: 1rem;
     padding: 15px;
     .base-button {
       width: 100%;
