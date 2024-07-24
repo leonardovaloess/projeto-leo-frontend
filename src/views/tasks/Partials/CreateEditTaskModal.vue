@@ -18,7 +18,7 @@ const props = defineProps({
 
 const error = ref(false);
 const textError = ref("Preencha todos os campos obrigatórios!");
-const emit = defineEmits(["update:open", "update:reload"]);
+const emit = defineEmits(["update:open", "update:refresh"]);
 
 const success = ref(false);
 
@@ -36,8 +36,7 @@ const handlePayload = async () => {
     if (task) {
       close.value = false;
       emit("update:open", false);
-      emit("update:reload", true);
-
+      emit("update:refresh", true);
       success.value = true;
 
       setTimeout(() => {

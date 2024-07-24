@@ -3,7 +3,6 @@ import { ref, onMounted } from "vue";
 
 import BaseInput from "@/components/input/BaseInput.vue";
 import BaseButton from "@/components/buttons/BaseButton.vue";
-import BaseDropdown from "@/components/dropdown/BaseDropdown.vue";
 import CreateEditTaskModal from "./Partials/CreateEditTaskModal.vue";
 import TaskTab from "./Partials/TaskTab.vue";
 import { useTaskStore } from "@/stores/tasks";
@@ -59,7 +58,7 @@ onMounted(async () => {
     <CreateEditTaskModal
       :open="openModal"
       @update:open="openModal = $event"
-      @update:reload="refreshList($event)"
+      @update:refresh="refreshList($event)"
       :create="createModal"
     />
   </div>

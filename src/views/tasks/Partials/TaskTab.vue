@@ -2,7 +2,12 @@
 import { ref } from "vue";
 import { useTaskStore } from "@/stores/tasks";
 import { onMounted, watch } from "vue";
-import ConfirmStatusModal from "./ConfirmStatusModal.vue";
+
+import BaseButton from "@/components/buttons/BaseButton.vue";
+import BaseModal from "@/components/modal/BaseModal.vue";
+import BaseAlertError from "@/components/Alert/BaseAlertError.vue";
+import BaseAlertSuccess from "@/components/Alert/BaseAlertSuccess.vue";
+
 const taskStore = useTaskStore();
 const { toggleTaskStatus } = taskStore;
 
@@ -14,19 +19,42 @@ const tab = ref(null);
 
 const confirmModal = ref(false);
 const confirm = ref(false);
-
+const success = ref(false);
 const taskToComplete = ref({});
 
 const emit = defineEmits(["update:refresh"]);
 
-const sendEmit = (ev) => {
-  console.log("aqui 2", ev);
-  emit("update:refresh", ev);
-};
-
 const handleConfirmModalOpen = (task) => {
   confirmModal.value = !confirmModal.value;
   taskToComplete.value = task;
+};
+
+const handlePayload = async () => {
+  const response = await toggleTaskStatus(taskToComplete.value.id);
+
+  console.log(response);
+  if (response) {
+    confirmModal.value = false;
+
+    success.value = true;
+
+    emit("update:refresh", true);
+
+    setTimeout(() => {
+      success.value = false;
+    }, 3000);
+  } else {
+    error.value = true;
+
+    setTimeout(() => {
+      error.value = false;
+    }, 3000);
+  }
+};
+
+const handleCloseModal = (task) => {
+  task.done = !task.done;
+  confirmModal.value = false;
 };
 </script>
 
@@ -43,13 +71,13 @@ const handleConfirmModalOpen = (task) => {
           <div v-for="task in props.toDoArr" :key="task.id" class="card">
             <h2 class="card-title">{{ task.title }}</h2>
             <div class="flex">
-              <v-checkbox
+              <v-switch
                 class="btn"
                 color="success"
-                :value="task.done"
                 hide-details
-                @click="handleConfirmModalOpen(task.id)"
-              ></v-checkbox>
+                v-model="task.done"
+                @click="handleConfirmModalOpen(task)"
+              ></v-switch>
             </div>
           </div>
         </div>
@@ -64,12 +92,13 @@ const handleConfirmModalOpen = (task) => {
           >
             <h2 class="card-title">{{ task.title }}</h2>
             <div class="flex">
-              <v-checkbox
+              <v-switch
                 class="btn"
                 color="success"
                 hide-details
-                @click="toggleTaskStatus(task.id)"
-              ></v-checkbox>
+                v-model="task.done"
+                @click="handleToDoSwitch"
+              ></v-switch>
             </div>
           </div>
         </div>
@@ -77,15 +106,68 @@ const handleConfirmModalOpen = (task) => {
     </v-tabs-window>
   </v-card-text>
 
-  <ConfirmStatusModal
-    :open="confirmModal"
-    :task-id="taskToComplete"
-    @update:open="confirmModal = $event"
-    @update:reload="sendEmit($event)"
-  />
+  <BaseModal :open="confirmModal" :closeIcon="true">
+    <template v-slot:header>
+      <div class="header">
+        <h1>Deseja marcar esta Tarefa como concluída?</h1>
+      </div>
+    </template>
+
+    <template v-slot:footer>
+      <div class="footer flex gap-1">
+        <BaseButton
+          class="cancel"
+          label="Cancelar"
+          @click="handleCloseModal(taskToComplete)"
+        />
+        <BaseButton label="Sim" @click="handlePayload" />
+      </div>
+    </template>
+  </BaseModal>
+
+  <BaseAlertError v-if="error" class="alert" :text="textError"></BaseAlertError>
+  <BaseAlertSuccess
+    v-if="success"
+    class="alert"
+    text="Tarefa concluída com sucesso"
+  ></BaseAlertSuccess>
 </template>
 
 <style scoped lang="scss">
+.alert {
+  z-index: 99999 !important;
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  h1 {
+    font-size: 25px;
+    width: 100%;
+    color: rgb(73, 73, 73) !important;
+    text-align: center;
+  }
+}
+
+.body {
+  margin-top: 15px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.footer {
+  margin-top: 25px;
+  align-items: center;
+  justify-content: center;
+}
+
+.cancel {
+  background-color: rgb(252, 31, 31);
+}
+
 .teste {
   display: flex;
   flex-direction: column;
