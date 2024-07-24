@@ -74,7 +74,7 @@ export default {
 
   @media (max-width: 630px) {
     h2 {
-      font-size: 12px;
+      font-size: 15px;
     }
 
     width: 100%;

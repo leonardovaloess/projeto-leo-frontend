@@ -33,6 +33,12 @@ const search = ref(null);
   .base-input {
     flex: content;
   }
+  @media (max-width: 630px) {
+    gap: 0.5rem;
+    .base-button {
+      width: 100%;
+    }
+  }
 }
 
 .tasks {
