@@ -76,8 +76,9 @@ export default {
     h2 {
       font-size: 12px;
     }
+
     width: 100%;
-    padding: 2px 10px;
+    padding: 0px 10px;
   }
 }
 
