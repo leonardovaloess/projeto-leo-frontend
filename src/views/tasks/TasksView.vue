@@ -63,5 +63,9 @@ const search = ref(null);
   flex-direction: column;
   align-items: center;
   padding: 2rem;
+
+  @media (max-width: 630px) {
+    padding: 1rem;
+  }
 }
 </style>

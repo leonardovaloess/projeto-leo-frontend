@@ -62,17 +62,22 @@ export default {
   align-items: center;
   justify-content: space-between;
   position: relative;
+  overflow-x: auto;
 
   h2 {
     color: rgb(85, 85, 85);
     font-weight: 500;
-
-    @media (max-width: 630px) {
-      font-size: 18px;
-    }
   }
   .btn {
     border-radius: 30px;
+  }
+
+  @media (max-width: 630px) {
+    h2 {
+      font-size: 12px;
+    }
+    width: 100%;
+    padding: 2px 10px;
   }
 }
 
