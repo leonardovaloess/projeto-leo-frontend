@@ -27,7 +27,8 @@ const search = ref(null);
       />
     </div>
     <div class="tasks">
-      <TaskTab />
+      {{ completedTasks }}
+      <TaskTab :to-do-arr="tasks" :-completed-array="completedTasks" />
     </div>
     <CreateEditTaskModal
       :open="openModal"
@@ -61,23 +62,7 @@ const search = ref(null);
   gap: 40px;
   margin-top: 50px;
   justify-content: space-around;
-
-  .to-do,
-  .completed {
-    width: 50%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-  }
-
-  .to-do {
-    margin-right: 1px solid rgba(0, 0, 0, 0.22);
-  }
-
-  .completed {
-    border-left: 2px solid rgba(0, 0, 0, 0.256);
-  }
-
+  flex: 1;
   @media (max-width: 630px) {
     margin-top: 20px;
   }
@@ -88,7 +73,7 @@ const search = ref(null);
   flex-direction: column;
   align-items: center;
   padding: 2rem;
-
+  height: 100%;
   @media (max-width: 630px) {
     padding: 1rem;
   }

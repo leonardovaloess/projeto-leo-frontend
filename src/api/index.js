@@ -1,6 +1,7 @@
 import axios from "axios";
 
 import AuthService from "./services/auth";
+import TaskService from "./services/tasks";
 
 const baseURL = import.meta.env.VITE_URL_API;
 
@@ -61,4 +62,5 @@ httpClient.interceptors.response.use(
 
 export default {
   auth: AuthService(httpClient),
+  task: TaskService(httpClient),
 };

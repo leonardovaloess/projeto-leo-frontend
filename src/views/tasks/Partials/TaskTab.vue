@@ -1,9 +1,22 @@
-<script>
-export default {
-  data: () => ({
-    tab: null,
-  }),
+<script setup>
+import { ref } from "vue";
+import { useTaskStore } from "@/stores/tasks";
+import { onMounted, watch } from "vue";
+const taskStore = useTaskStore();
+const { getTasks, toggleTaskStatus } = taskStore;
+
+const tasks = ref([]);
+const completedTasks = ref([]);
+const tab = ref(null);
+
+const initFunction = async () => {
+  tasks.value = await getTasks();
 };
+
+onMounted(async () => {
+  await initFunction();
+  console.log(tasks.value);
+});
 </script>
 
 <template>
@@ -12,30 +25,40 @@ export default {
     <v-tab value="completed" class="tab">Concluídas</v-tab>
   </v-tabs>
 
-  <v-card-text>
+  <v-card-text class="teste">
     <v-tabs-window v-model="tab">
       <v-tabs-window-item value="to-do" class="window">
-        <div class="card">
-          <h2 class="card-title">Hello</h2>
-
-          <div class="flex">
-            <v-checkbox class="btn" color="success" hide-details></v-checkbox>
+        <div class="tasks-list">
+          <div v-for="task in tasks" :key="task.id" class="card">
+            <h2 class="card-title">{{ task.title }}</h2>
+            <div class="flex">
+              <v-checkbox
+                class="btn"
+                color="success"
+                hide-details
+                @click="toggleTaskStatus(task.id)"
+              ></v-checkbox>
+            </div>
           </div>
         </div>
       </v-tabs-window-item>
 
       <v-tabs-window-item value="completed" class="window">
-        <div class="card completed">
-          <h2 class="card-title">Criar campanhas de desenvolvimento</h2>
-
-          <div class="flex">
-            <v-checkbox
-              class="btn"
-              :value="true"
-              :disabled="true"
-              color="success"
-              hide-details
-            ></v-checkbox>
+        <div class="tasks-list">
+          <div
+            v-for="task in completedTasks"
+            :key="task.id"
+            class="card completed"
+          >
+            <h2 class="card-title">{{ task.title }}</h2>
+            <div class="flex">
+              <v-checkbox
+                class="btn"
+                color="success"
+                hide-details
+                @click="toggleTaskStatus(task.id)"
+              ></v-checkbox>
+            </div>
           </div>
         </div>
       </v-tabs-window-item>
@@ -44,6 +67,17 @@ export default {
 </template>
 
 <style scoped lang="scss">
+.teste {
+  display: flex;
+  flex-direction: column;
+  overflow-y: auto;
+}
+
+.tasks-list {
+  max-height: 500px;
+  overflow-y: auto;
+}
+
 .tabs {
   border: none !important;
 }
@@ -62,6 +96,7 @@ export default {
   align-items: center;
   justify-content: space-between;
   position: relative;
+  margin-top: 1rem;
   overflow-x: auto;
 
   h2 {
@@ -77,9 +112,16 @@ export default {
       font-size: 15px;
     }
 
-    width: 100%;
-    padding: 0px 10px;
+    & {
+      width: 100%;
+      padding: 0px 10px;
+    }
   }
+}
+.window {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
 }
 
 .completed {
