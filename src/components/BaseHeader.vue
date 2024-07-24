@@ -1,12 +1,8 @@
 <script setup>
-import { useAuthStore } from "@/stores/auth";
-import { storeToRefs } from "pinia";
 import { ref } from "vue";
 import { useRoute, useRouter } from "vue-router";
 import BaseMobileSidebar from "./sidebar/BaseMobileSidebar.vue";
 import { onMounted } from "vue";
-const authStore = useAuthStore();
-const { user } = storeToRefs(authStore);
 
 const route = useRoute();
 

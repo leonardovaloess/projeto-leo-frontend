@@ -1,20 +1,6 @@
 <script setup>
 import BaseHeader from "@/components/BaseHeader.vue";
 import BaseSidebar from "./sidebar/BaseSidebar.vue";
-import { onMounted } from "vue";
-import { useAuthStore } from "@/stores/auth";
-
-const authStore = useAuthStore();
-const { userInfo } = authStore;
-
-const loadUserInfos = async () => {
-  const user_id = localStorage.getItem("user_id");
-  await userInfo(user_id);
-};
-
-onMounted(async () => {
-  await loadUserInfos();
-});
 </script>
 
 <template>

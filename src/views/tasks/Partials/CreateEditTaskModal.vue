@@ -2,17 +2,64 @@
 import BaseButton from "@/components/buttons/BaseButton.vue";
 import BaseInput from "@/components/input/BaseInput.vue";
 import BaseModal from "@/components/modal/BaseModal.vue";
+import { useTaskStore } from "@/stores/tasks";
 import { ref } from "vue";
 import { defineProps, defineEmits, watch } from "vue";
+import BaseAlertError from "@/components/Alert/BaseAlertError.vue";
+import BaseAlertSuccess from "@/components/Alert/BaseAlertSuccess.vue";
+
+const taskStore = useTaskStore();
+const { createTask } = taskStore;
 
 const props = defineProps({
   open: Boolean,
   create: Boolean,
 });
 
-const emit = defineEmits(["update:open"]);
+const error = ref(false);
+const textError = ref("Preencha todos os campos obrigatórios!");
+const emit = defineEmits(["update:open", "update:reload"]);
+
+const success = ref(false);
 
 const close = ref(props.open);
+
+const payload = ref({
+  title: "",
+  content: "",
+});
+
+const handlePayload = async () => {
+  if (payload.value.title) {
+    const task = await createTask(payload.value);
+
+    if (task) {
+      close.value = false;
+      emit("update:open", false);
+      emit("update:reload", true);
+
+      success.value = true;
+
+      setTimeout(() => {
+        success.value = false;
+      }, 3000);
+    } else {
+      error.value = true;
+
+      setTimeout(() => {
+        error.value = false;
+      }, 3000);
+
+      textError.value = "Não foi possivel criar a tarefa";
+    }
+  } else {
+    error.value = true;
+
+    setTimeout(() => {
+      error.value = false;
+    }, 3000);
+  }
+};
 
 watch(
   () => props.open,
@@ -36,20 +83,41 @@ const handleClose = () => {
     </template>
     <template v-slot:body>
       <div class="body">
-        <BaseInput class label="Título da Tarefa" placeholder="título" />
-        <BaseInput class label="Descrição (opcional)" placeholder="Descrição" />
+        <BaseInput
+          class
+          v-model="payload.title"
+          label="Título da Tarefa (obrigatório)"
+          placeholder="título"
+        />
+        <BaseInput
+          class
+          v-model="payload.content"
+          label="Descrição (opcional)"
+          placeholder="Descrição"
+        />
       </div>
     </template>
     <template v-slot:footer>
       <div class="footer flex gap-1">
         <BaseButton class="cancel" label="Cancelar" @click="handleClose" />
-        <BaseButton label="Salvar" />
+        <BaseButton label="Salvar" @click="handlePayload" />
       </div>
     </template>
   </BaseModal>
+
+  <BaseAlertError v-if="error" class="alert" :text="textError"></BaseAlertError>
+  <BaseAlertSuccess
+    v-if="success"
+    class="alert"
+    text="Tarefa criada com sucesso"
+  ></BaseAlertSuccess>
 </template>
 
 <style scoped lang="scss">
+.alert {
+  z-index: 99999 !important;
+}
+
 .header {
   display: flex;
   align-items: center;

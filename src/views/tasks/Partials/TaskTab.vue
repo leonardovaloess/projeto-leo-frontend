@@ -2,21 +2,18 @@
 import { ref } from "vue";
 import { useTaskStore } from "@/stores/tasks";
 import { onMounted, watch } from "vue";
+import ConfirmStatusModal from "./ConfirmStatusModal.vue";
 const taskStore = useTaskStore();
-const { getTasks, toggleTaskStatus } = taskStore;
+const { toggleTaskStatus } = taskStore;
 
-const tasks = ref([]);
-const completedTasks = ref([]);
+const props = defineProps({
+  toDoArr: Array,
+  completedArr: Array,
+});
 const tab = ref(null);
 
-const initFunction = async () => {
-  tasks.value = await getTasks();
-};
-
-onMounted(async () => {
-  await initFunction();
-  console.log(tasks.value);
-});
+const confirmModal = ref(false);
+const confirm = ref(false);
 </script>
 
 <template>
@@ -29,16 +26,18 @@ onMounted(async () => {
     <v-tabs-window v-model="tab">
       <v-tabs-window-item value="to-do" class="window">
         <div class="tasks-list">
-          <div v-for="task in tasks" :key="task.id" class="card">
+          <div v-for="task in props.toDoArr" :key="task.id" class="card">
             <h2 class="card-title">{{ task.title }}</h2>
             <div class="flex">
               <v-checkbox
                 class="btn"
                 color="success"
+                :value="task.done"
                 hide-details
-                @click="toggleTaskStatus(task.id)"
+                @click="confirmModal = !confirmModal"
               ></v-checkbox>
             </div>
+            <ConfirmStatusModal :open="confirmModal" />
           </div>
         </div>
       </v-tabs-window-item>
@@ -46,7 +45,7 @@ onMounted(async () => {
       <v-tabs-window-item value="completed" class="window">
         <div class="tasks-list">
           <div
-            v-for="task in completedTasks"
+            v-for="task in props.completedArr"
             :key="task.id"
             class="card completed"
           >

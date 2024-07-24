@@ -12,6 +12,36 @@ export const useTaskStore = defineStore("task", () => {
     }
   }
 
+  async function getCompletedTasks() {
+    try {
+      const response = await api.task.getCompletedTasks();
+
+      return response.data;
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
+  async function getToDoTasks() {
+    try {
+      const response = await api.task.getToDoTasks();
+
+      return response.data;
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
+  async function createTask(payload) {
+    try {
+      const response = await api.task.createTask(payload);
+
+      return response.data;
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
   async function toggleTaskStatus(task_id) {
     try {
       await api.task.toggleTaskStatus(task_id);
@@ -23,6 +53,9 @@ export const useTaskStore = defineStore("task", () => {
 
   return {
     getTasks,
+    getCompletedTasks,
+    getToDoTasks,
+    createTask,
     toggleTaskStatus,
   };
 });

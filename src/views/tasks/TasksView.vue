@@ -1,15 +1,38 @@
 <script setup>
-import { ref } from "vue";
+import { ref, onMounted } from "vue";
 
 import BaseInput from "@/components/input/BaseInput.vue";
 import BaseButton from "@/components/buttons/BaseButton.vue";
 import BaseDropdown from "@/components/dropdown/BaseDropdown.vue";
 import CreateEditTaskModal from "./Partials/CreateEditTaskModal.vue";
 import TaskTab from "./Partials/TaskTab.vue";
+import { useTaskStore } from "@/stores/tasks";
 
 const openModal = ref(false);
 const createModal = ref(true);
 const search = ref(null);
+
+const taskStore = useTaskStore();
+const { getToDoTasks, getCompletedTasks } = taskStore;
+
+const toDotasks = ref([]);
+const completedTasks = ref([]);
+
+const refreshList = async (ev) => {
+  if (ev == true) {
+    openModal.value = false;
+    await initFunction();
+  }
+};
+
+const initFunction = async () => {
+  toDotasks.value = await getToDoTasks();
+  completedTasks.value = await getCompletedTasks();
+};
+
+onMounted(async () => {
+  await initFunction();
+});
 </script>
 
 <template>
@@ -27,12 +50,12 @@ const search = ref(null);
       />
     </div>
     <div class="tasks">
-      {{ completedTasks }}
-      <TaskTab :to-do-arr="tasks" :-completed-array="completedTasks" />
+      <TaskTab :to-do-arr="toDotasks" :completed-arr="completedTasks" />
     </div>
     <CreateEditTaskModal
       :open="openModal"
       @update:open="openModal = $event"
+      @update:reload="refreshList($event)"
       :create="createModal"
     />
   </div>
