@@ -30,11 +30,13 @@ const search = ref(null);
   justify-content: flex-start;
   width: 100%;
   flex-wrap: wrap;
+
   .base-input {
     flex: content;
   }
   @media (max-width: 630px) {
     gap: 0.5rem;
+    padding: 15px;
     .base-button {
       width: 100%;
     }
