@@ -50,7 +50,11 @@ onMounted(async () => {
       />
     </div>
     <div class="tasks">
-      <TaskTab :to-do-arr="toDotasks" :completed-arr="completedTasks" />
+      <TaskTab
+        :to-do-arr="toDotasks"
+        :completed-arr="completedTasks"
+        @update:refresh="refreshList"
+      />
     </div>
     <CreateEditTaskModal
       :open="openModal"

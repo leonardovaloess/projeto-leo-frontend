@@ -44,8 +44,8 @@ export const useTaskStore = defineStore("task", () => {
 
   async function toggleTaskStatus(task_id) {
     try {
-      await api.task.toggleTaskStatus(task_id);
-      await getTasks();
+      const response = await api.task.toggleTaskStatus(task_id);
+      return response.data;
     } catch (error) {
       console.log(error);
     }

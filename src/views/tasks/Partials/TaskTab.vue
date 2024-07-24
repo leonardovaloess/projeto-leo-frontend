@@ -14,6 +14,20 @@ const tab = ref(null);
 
 const confirmModal = ref(false);
 const confirm = ref(false);
+
+const taskToComplete = ref({});
+
+const emit = defineEmits(["update:refresh"]);
+
+const sendEmit = (ev) => {
+  console.log("aqui 2", ev);
+  emit("update:refresh", ev);
+};
+
+const handleConfirmModalOpen = (task) => {
+  confirmModal.value = !confirmModal.value;
+  taskToComplete.value = task;
+};
 </script>
 
 <template>
@@ -34,10 +48,9 @@ const confirm = ref(false);
                 color="success"
                 :value="task.done"
                 hide-details
-                @click="confirmModal = !confirmModal"
+                @click="handleConfirmModalOpen(task.id)"
               ></v-checkbox>
             </div>
-            <ConfirmStatusModal :open="confirmModal" />
           </div>
         </div>
       </v-tabs-window-item>
@@ -63,6 +76,13 @@ const confirm = ref(false);
       </v-tabs-window-item>
     </v-tabs-window>
   </v-card-text>
+
+  <ConfirmStatusModal
+    :open="confirmModal"
+    :task-id="taskToComplete"
+    @update:open="confirmModal = $event"
+    @update:reload="sendEmit($event)"
+  />
 </template>
 
 <style scoped lang="scss">

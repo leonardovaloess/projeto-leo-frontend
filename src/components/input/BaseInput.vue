@@ -8,9 +8,9 @@ const props = defineProps({
 
 <template>
   <div classs="container flex column">
-    <label>{{ props.label }}</label>
+    <span class="label">{{ props.label }}</span>
 
-    <div class="input">
+    <div class="input flex flex-column">
       <input
         :type="passwordInput"
         :placeholder="props.placeholder"
@@ -24,12 +24,14 @@ const props = defineProps({
 
 <style scoped lang="scss">
 .container {
-  gap: 0.3rem;
+  display: flex;
+  flex-direction: column;
+  gap: 3rem;
 }
 
 input {
   border-radius: 8px;
-  padding: 0.2rem;
+  padding: 0.2rem 0.5rem;
   border: 2px solid #24242475;
   width: 100%;
 }
