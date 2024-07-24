@@ -135,7 +135,6 @@ const handleLogout = async () => {
   padding: 10px;
   width: 100%;
   color: rgb(43, 43, 43);
-  background-color: rgb(226, 226, 226);
   border-radius: 8px;
   text-decoration: none;
   margin-top: 10px;
