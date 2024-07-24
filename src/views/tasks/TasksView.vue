@@ -77,6 +77,10 @@ const search = ref(null);
   .completed {
     border-left: 2px solid rgba(0, 0, 0, 0.256);
   }
+
+  @media (max-width: 630px) {
+    margin-top: 20px;
+  }
 }
 
 .page-background {
