@@ -21,6 +21,7 @@ const confirmModal = ref(false);
 const confirm = ref(false);
 const success = ref(false);
 const taskToComplete = ref({});
+const error = ref(false);
 
 const emit = defineEmits(["update:refresh"]);
 
@@ -30,7 +31,10 @@ const handleConfirmModalOpen = (task) => {
 };
 
 const handlePayload = async () => {
-  const response = await toggleTaskStatus(taskToComplete.value.id);
+  const response = await toggleTaskStatus(
+    taskToComplete.value.id,
+    taskToComplete.value.done
+  );
 
   console.log(response);
   if (response) {
@@ -50,6 +54,12 @@ const handlePayload = async () => {
       error.value = false;
     }, 3000);
   }
+};
+
+const handleToDoSwitch = async (task) => {
+  console.log(task);
+  await toggleTaskStatus(task.id, !task.done);
+  emit("update:refresh", true);
 };
 
 const handleCloseModal = (task) => {
@@ -97,7 +107,7 @@ const handleCloseModal = (task) => {
                 color="success"
                 hide-details
                 v-model="task.done"
-                @click="handleToDoSwitch"
+                @click="handleToDoSwitch(task)"
               ></v-switch>
             </div>
           </div>

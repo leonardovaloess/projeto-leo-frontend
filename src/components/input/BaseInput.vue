@@ -12,7 +12,6 @@ const props = defineProps({
 
     <div class="input flex flex-column">
       <input
-        :type="passwordInput"
         :placeholder="props.placeholder"
         :value="props.modelValue"
         @input="$emit('update:modelValue', $event.target.value)"

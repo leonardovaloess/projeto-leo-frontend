@@ -11,7 +11,9 @@ export default (httpClient) => ({
   createTask: (payload) => {
     return httpClient.post("/tasks", payload);
   },
-  toggleTaskStatus: (task_id) => {
-    return httpClient.put(`toggle-task-status/${task_id}`, { done: true });
+  toggleTaskStatus: (task_id, status) => {
+    return httpClient.put(`toggle-task-status/${task_id}`, {
+      done: status,
+    });
   },
 });
