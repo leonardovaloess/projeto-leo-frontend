@@ -100,8 +100,8 @@ const handleClose = () => {
     </template>
     <template v-slot:footer>
       <div class="footer flex gap-1">
-        <BaseButton class="cancel" label="Cancelar" @click="handleClose" />
-        <BaseButton label="Salvar" @click="handlePayload" />
+        <BaseButton class="cancel btn" label="Cancelar" @click="handleClose" />
+        <BaseButton label="Salvar btn" @click="handlePayload" />
       </div>
     </template>
   </BaseModal>
@@ -118,6 +118,11 @@ const handleClose = () => {
 .input {
   padding: 12px;
 }
+
+.btn {
+  width: 110px;
+}
+
 .alert {
   z-index: 99999 !important;
 }

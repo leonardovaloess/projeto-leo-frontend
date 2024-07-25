@@ -7,7 +7,7 @@ import BaseButton from "@/components/buttons/BaseButton.vue";
 import BaseModal from "@/components/modal/BaseModal.vue";
 import BaseAlertError from "@/components/Alert/BaseAlertError.vue";
 import BaseAlertSuccess from "@/components/Alert/BaseAlertSuccess.vue";
-
+import BaseNoDataAlert from "@/components/BaseNoDataAlert.vue";
 const taskStore = useTaskStore();
 const { toggleTaskStatus } = taskStore;
 
@@ -81,15 +81,17 @@ const handleCloseModal = (task) => {
           <div v-for="task in props.toDoArr" :key="task.id" class="card">
             <h2 class="card-title">{{ task.title }}</h2>
             <div class="flex">
-              <v-switch
-                class="btn"
+              <v-checkbox
                 color="success"
                 hide-details
                 v-model="task.done"
                 @click="handleConfirmModalOpen(task)"
-              ></v-switch>
+              ></v-checkbox>
             </div>
           </div>
+        </div>
+        <div class="no-data-alert">
+          <BaseNoDataAlert />
         </div>
       </v-tabs-window-item>
 
@@ -102,15 +104,17 @@ const handleCloseModal = (task) => {
           >
             <h2 class="card-title">{{ task.title }}</h2>
             <div class="flex">
-              <v-switch
-                class="btn"
+              <v-checkbox
                 color="success"
                 hide-details
                 v-model="task.done"
                 @click="handleToDoSwitch(task)"
-              ></v-switch>
+              ></v-checkbox>
             </div>
           </div>
+        </div>
+        <div class="no-data-alert">
+          <BaseNoDataAlert title="Nenhuma Tarefa Encontrada!" />
         </div>
       </v-tabs-window-item>
     </v-tabs-window>
@@ -126,11 +130,11 @@ const handleCloseModal = (task) => {
     <template v-slot:footer>
       <div class="footer flex gap-1">
         <BaseButton
-          class="cancel"
+          class="cancel btn"
           label="Cancelar"
           @click="handleCloseModal(taskToComplete)"
         />
-        <BaseButton label="Sim" @click="handlePayload" />
+        <BaseButton class="btn" label="Sim" @click="handlePayload" />
       </div>
     </template>
   </BaseModal>
@@ -144,6 +148,17 @@ const handleCloseModal = (task) => {
 </template>
 
 <style scoped lang="scss">
+.btn {
+  width: 110px;
+}
+
+.no-data-alert {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
 .alert {
   z-index: 99999 !important;
 }
