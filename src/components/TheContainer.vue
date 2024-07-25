@@ -64,8 +64,8 @@ import BaseSidebar from "./sidebar/BaseSidebar.vue";
   border-radius: 10px;
   height: 100%;
 }
-@media (min-width: 0px) and (max-width: 768px) {
-  .page {
+@media (min-width: 0px) and (max-width: 840px) {
+  .main {
     margin-left: 0px;
   }
 }
