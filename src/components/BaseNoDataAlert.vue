@@ -17,13 +17,20 @@ const props = defineProps({
 .container {
   display: flex;
   flex-direction: column;
-
+  align-items: center;
+  justify-content: center;
   img {
-    width: 400px;
+    width: 350px;
   }
 
   h1 {
-    font-size: 34px;
+    font-size: 28px;
+    color: rgb(66, 66, 66);
+    margin-bottom: 10px;
+  }
+
+  p {
+    color: grey;
   }
 }
 </style>

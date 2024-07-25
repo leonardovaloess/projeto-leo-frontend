@@ -59,6 +59,7 @@ header {
   text-wrap: wrap;
   align-items: center;
   justify-content: space-between;
+  z-index: 9999;
 
   @media (max-width: 840px) {
     font-size: 14px;

@@ -32,7 +32,6 @@ const refreshList = async (ev) => {
 
 const initFunction = async () => {
   loading.value = true;
-
   toDotasks.value = await getToDoTasks();
   completedTasks.value = await getCompletedTasks();
 

@@ -28,7 +28,7 @@ import BaseSidebar from "./sidebar/BaseSidebar.vue";
   z-index: 0;
 }
 .sidebar {
-  position: sticky;
+  position: fixed;
   z-index: 99;
   box-shadow: 10px 0px 105px rgba(0, 0, 0, 0.267);
 }
@@ -37,18 +37,20 @@ import BaseSidebar from "./sidebar/BaseSidebar.vue";
   background-color: #d4d4d4;
   padding: 2rem;
   flex: 1;
+  z-index: 0;
 }
 
 .header {
   position: sticky;
   top: 0;
   right: 0;
-  z-index: 0;
+  z-index: 9999;
 }
 .main {
   transition: all ease-in-out 0.4s;
   display: flex;
   flex-direction: column;
+  margin-left: 240px;
   width: 100%;
   height: 100vh;
   background-color: red;

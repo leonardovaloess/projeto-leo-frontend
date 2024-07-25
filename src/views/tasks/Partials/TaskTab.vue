@@ -91,7 +91,10 @@ const handleCloseModal = (task) => {
           </div>
         </div>
         <div class="no-data-alert">
-          <BaseNoDataAlert />
+          <BaseNoDataAlert
+            title="Nenhuma Tarefa Encontrada!"
+            text="Não foi encontrado nenhuma tarefa para seu usuário"
+          />
         </div>
       </v-tabs-window-item>
 
@@ -114,7 +117,10 @@ const handleCloseModal = (task) => {
           </div>
         </div>
         <div class="no-data-alert">
-          <BaseNoDataAlert title="Nenhuma Tarefa Encontrada!" />
+          <BaseNoDataAlert
+            title="Nenhuma Tarefa Encontrada!"
+            text="Não foi encontrado nenhuma tarefa concluída para seu usuário"
+          />
         </div>
       </v-tabs-window-item>
     </v-tabs-window>
