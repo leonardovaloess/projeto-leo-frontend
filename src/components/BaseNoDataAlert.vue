@@ -32,5 +32,21 @@ const props = defineProps({
   p {
     color: grey;
   }
+
+  @media (max-width: 630px) {
+    img {
+      width: 80%;
+    }
+
+    h1 {
+      text-align: center;
+      font-size: 20px;
+    }
+
+    p {
+      text-align: center;
+      font-size: 10px;
+    }
+  }
 }
 </style>
