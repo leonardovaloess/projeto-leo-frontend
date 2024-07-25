@@ -57,9 +57,9 @@ const handlePayload = async () => {
 };
 
 const handleToDoSwitch = async (task) => {
-  console.log(task);
-  await toggleTaskStatus(task.id, !task.done);
   emit("update:refresh", true);
+
+  await toggleTaskStatus(task.id, !task.done);
 };
 
 const handleCloseModal = (task) => {
