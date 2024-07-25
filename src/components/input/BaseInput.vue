@@ -7,18 +7,12 @@ const props = defineProps({
 </script>
 
 <template>
-  <div classs="container flex column">
-    <span class="label">{{ props.label }}</span>
-
-    <div class="input flex flex-column">
-      <input
-        :placeholder="props.placeholder"
-        :value="props.modelValue"
-        @input="$emit('update:modelValue', $event.target.value)"
-        v-bind="$attrs"
-      />
-    </div>
-  </div>
+  <input
+    :placeholder="props.placeholder"
+    :value="props.modelValue"
+    @input="$emit('update:modelValue', $event.target.value)"
+    v-bind="$attrs"
+  />
 </template>
 
 <style scoped lang="scss">

@@ -82,14 +82,16 @@ const handleClose = () => {
     </template>
     <template v-slot:body>
       <div class="body">
+        <label>Título da tarefa (obrigatório)</label>
         <BaseInput
-          class
+          class="input"
           v-model="payload.title"
           label="Título da Tarefa (obrigatório)"
           placeholder="título"
         />
+        <label>Descrição (opcional)</label>
         <BaseInput
-          class
+          class="input"
           v-model="payload.content"
           label="Descrição (opcional)"
           placeholder="Descrição"
@@ -113,6 +115,9 @@ const handleClose = () => {
 </template>
 
 <style scoped lang="scss">
+.input {
+  padding: 12px;
+}
 .alert {
   z-index: 99999 !important;
 }
