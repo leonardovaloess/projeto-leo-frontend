@@ -1,5 +1,5 @@
 <script setup>
-import { ref, onMounted } from "vue";
+import { ref, onMounted, watch } from "vue";
 
 import BaseInput from "@/components/input/BaseInput.vue";
 import BaseButton from "@/components/buttons/BaseButton.vue";
@@ -29,8 +29,21 @@ const initFunction = async () => {
   completedTasks.value = await getCompletedTasks();
 };
 
+const filterTasks = (tasks, query) => {
+  if (!query) return tasks;
+  return tasks.filter((task) =>
+    task.title.toLowerCase().includes(query.toLowerCase())
+  );
+};
+
 onMounted(async () => {
   await initFunction();
+});
+
+watch(search, async (newVal) => {
+  const query = newVal || "";
+  toDotasks.value = filterTasks(await getToDoTasks(), query);
+  completedTasks.value = filterTasks(await getCompletedTasks(), query);
 });
 </script>
 
@@ -42,6 +55,7 @@ onMounted(async () => {
         v-model="search"
         placeholder="Buscar Tarefa..."
       />
+      {{ search }}
       <BaseButton
         class="base-button"
         label="Adicionar Tarefa"
