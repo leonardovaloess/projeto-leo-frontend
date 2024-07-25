@@ -115,8 +115,8 @@ const handleLogout = async () => {
 
   .nav-links {
     background-color: #fff;
-    width: 92%;
-    border-radius: 7px;
+    width: 87%;
+    border-radius: 10px;
     height: 80%;
     padding: 10px;
     display: flex;
