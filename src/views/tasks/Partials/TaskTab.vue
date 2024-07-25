@@ -57,9 +57,8 @@ const handlePayload = async () => {
 };
 
 const handleToDoSwitch = async (task) => {
-  emit("update:refresh", true);
-
   await toggleTaskStatus(task.id, !task.done);
+  emit("update:refresh", true);
 };
 
 const handleCloseModal = (task) => {
@@ -105,12 +104,15 @@ const handleCloseModal = (task) => {
             :key="task.id"
             class="card completed"
           >
-            <h2 class="card-title">{{ task.title }}</h2>
-            <div class="flex">
+            <div class="flex gap-1 align-center justify-center">
+              <h2 class="card-title">{{ task.title }}</h2>
+            </div>
+            <div class="flex align-center justify-center">
               <v-checkbox
                 color="success"
                 hide-details
                 v-model="task.done"
+                width=""
                 @click="handleToDoSwitch(task)"
               ></v-checkbox>
             </div>
