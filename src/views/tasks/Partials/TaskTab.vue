@@ -77,7 +77,7 @@ const handleCloseModal = (task) => {
   <v-card-text class="teste">
     <v-tabs-window v-model="tab">
       <v-tabs-window-item value="to-do" class="window">
-        <div class="tasks-list">
+        <div class="tasks-list" v-if="props.toDoArr.length">
           <div v-for="task in props.toDoArr" :key="task.id" class="card">
             <h2 class="card-title">{{ task.title }}</h2>
             <div class="flex">
@@ -90,7 +90,7 @@ const handleCloseModal = (task) => {
             </div>
           </div>
         </div>
-        <div class="no-data-alert">
+        <div class="no-data-alert" v-else>
           <BaseNoDataAlert
             title="Nenhuma Tarefa Encontrada!"
             text="Não foi encontrado nenhuma tarefa para seu usuário"
@@ -99,7 +99,7 @@ const handleCloseModal = (task) => {
       </v-tabs-window-item>
 
       <v-tabs-window-item value="completed" class="window">
-        <div class="tasks-list">
+        <div class="tasks-list" v-if="props.completedArr.length">
           <div
             v-for="task in props.completedArr"
             :key="task.id"
@@ -116,7 +116,7 @@ const handleCloseModal = (task) => {
             </div>
           </div>
         </div>
-        <div class="no-data-alert">
+        <div class="no-data-alert" v-else>
           <BaseNoDataAlert
             title="Nenhuma Tarefa Encontrada!"
             text="Não foi encontrado nenhuma tarefa concluída para seu usuário"
