@@ -145,8 +145,21 @@ watch(search, async (newVal) => {
     gap: 1rem;
     padding: 15px;
 
+    .btns-container {
+      gap: 0.5rem;
+    }
+
     .base-button {
       font-size: 10px;
+
+      width: 10%;
+    }
+  }
+
+  @media (max-width: 400px) {
+    .btns-container {
+      flex-wrap: wrap;
+      gap: 15px;
     }
   }
 }
