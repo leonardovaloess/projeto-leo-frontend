@@ -8,6 +8,7 @@ import BaseModal from "@/components/modal/BaseModal.vue";
 import BaseAlertError from "@/components/Alert/BaseAlertError.vue";
 import BaseAlertSuccess from "@/components/Alert/BaseAlertSuccess.vue";
 import BaseNoDataAlert from "@/components/BaseNoDataAlert.vue";
+
 const taskStore = useTaskStore();
 const { toggleTaskStatus } = taskStore;
 
@@ -79,7 +80,7 @@ const handleCloseModal = (task) => {
         <div class="tasks-list" v-if="props.toDoArr.length">
           <div v-for="task in props.toDoArr" :key="task.id" class="card">
             <h2 class="card-title">{{ task.title }}</h2>
-            <div class="flex">
+            <div class="flex align-center gap-1">
               <v-checkbox
                 color="success"
                 hide-details
@@ -229,10 +230,9 @@ const handleCloseModal = (task) => {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  position: relative;
   margin-top: 1rem;
   overflow-x: auto;
-
+  overflow-y: hidden;
   h2 {
     color: rgb(85, 85, 85);
     font-weight: 500;

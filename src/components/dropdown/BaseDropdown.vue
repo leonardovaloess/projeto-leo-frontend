@@ -10,8 +10,8 @@ const openDrop = ref(false);
 </script>
 
 <template>
-  <div>
-    <button @click="openDrop = !openDrop">
+  <div class="btn-container" tabindex="1">
+    <button @click="openDrop = !openDrop" tabindex="1">
       <svg
         width="20px"
         height="20px"
@@ -43,7 +43,6 @@ const openDrop = ref(false);
       </svg>
     </button>
   </div>
-  {{ openDrop }}
   <div class="options" v-if="openDrop">
     <v-slot></v-slot>
   </div>
@@ -51,20 +50,24 @@ const openDrop = ref(false);
 
 <style scoped lang="scss">
 button {
-  padding: 0.3rem 1rem;
-  background-color: #1a4fc0;
   border-radius: 8px;
   color: #fff;
+  transform: rotate(90deg);
 
   &:hover {
-    background-color: #0b2b71;
     transition: 0.3s;
   }
+}
+
+.btn-container {
+  position: absolute;
 }
 
 .options {
   background-color: #f4f4f4;
   width: 200px;
   height: 200px;
+  z-index: 99999;
+  right: 0;
 }
 </style>

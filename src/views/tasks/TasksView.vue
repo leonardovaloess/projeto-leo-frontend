@@ -64,11 +64,23 @@ watch(search, async (newVal) => {
         v-model="search"
         placeholder="Buscar Tarefa..."
       />
-      <BaseButton
-        class="base-button"
-        label="Adicionar Tarefa"
-        @click="openModal = !openModal"
-      />
+      <div class="btns-container flex gap-1">
+        <BaseButton
+          class="base-button"
+          label="Adicionar Tarefa"
+          @click="openModal = !openModal"
+        />
+        <BaseButton
+          class="base-button"
+          label="Editar Tarefa"
+          @click="openModal = !openModal"
+        />
+        <BaseButton
+          class="base-button"
+          label="Excluir Tarefa"
+          @click="openModal = !openModal"
+        />
+      </div>
     </div>
     <div class="tasks" v-if="!loading">
       <TaskTab
@@ -114,11 +126,27 @@ watch(search, async (newVal) => {
   .base-input {
     flex: content;
   }
+  @media (max-width: 1200px) {
+    flex-direction: column;
+    gap: 1rem;
+
+    .btns-container {
+      align-items: center;
+      justify-content: space-between;
+      width: 100%;
+
+      .base-button {
+        width: 100%;
+        font-size: 12px;
+      }
+    }
+  }
   @media (max-width: 630px) {
     gap: 1rem;
     padding: 15px;
+
     .base-button {
-      width: 100%;
+      font-size: 10px;
     }
   }
 }
